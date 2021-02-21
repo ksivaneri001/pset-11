@@ -82,6 +82,22 @@ public class ProblemSet11 {
         System.out.println(tester.seriesUp(2));
         System.out.println(tester.seriesUp(0));
         System.out.println(tester.seriesUp(-1));
+
+        // Exercise 9
+        System.out.println("\nExercise 9");
+        System.out.println(tester.maxMirror(new ArrayList<>(Arrays.asList(1, 2, 3, 8, 9, 3, 2, 1))));
+        System.out.println(tester.maxMirror(new ArrayList<>(Arrays.asList(1, 2, 1, 4))));
+        System.out.println(tester.maxMirror(new ArrayList<>(Arrays.asList(7, 1, 2, 9, 7, 2, 1))));
+        System.out.println(tester.maxMirror(new ArrayList<>(Arrays.asList(7, 1, 2, 9, 7, 2, 3))));
+        System.out.println(tester.maxMirror(null));
+
+        // Exercise 10
+        System.out.println("\nExercise 10");
+        System.out.println(tester.countClumps(new ArrayList<>(Arrays.asList(1, 2, 2, 3, 4, 4))));
+        System.out.println(tester.countClumps(new ArrayList<>(Arrays.asList(1, 1, 2, 1, 1))));
+        System.out.println(tester.countClumps(new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1))));
+        System.out.println(tester.countClumps(new ArrayList<>(Arrays.asList(0, 1, 0, 1, 0))));
+        System.out.println(tester.countClumps(null));
     }
 
     public ArrayList<String> fizzBuzz(int start, int end) {
