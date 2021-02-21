@@ -54,6 +54,34 @@ public class ProblemSet11 {
         System.out.println(tester.canBalance(new ArrayList<>(Arrays.asList(10, 10))));
         System.out.println(tester.canBalance(new ArrayList<>(Arrays.asList(1))));
         System.out.println(tester.canBalance(null));
+
+        // Exercise 6
+        System.out.println("\nExercise 6");
+        System.out.println(tester.linearIn(new ArrayList<>(Arrays.asList(1, 2, 4, 6)), new ArrayList<>(Arrays.asList(2, 4))));
+        System.out.println(tester.linearIn(new ArrayList<>(Arrays.asList(1, 2, 4, 6)), new ArrayList<>(Arrays.asList(2, 3, 4))));
+        System.out.println(tester.linearIn(new ArrayList<>(Arrays.asList(1, 2, 4, 4, 6)), new ArrayList<>(Arrays.asList(2, 4))));
+        System.out.println(tester.linearIn(new ArrayList<>(Arrays.asList(1, 2, 1, 6)), new ArrayList<>(Arrays.asList(2, 4))));
+        System.out.println(tester.linearIn(new ArrayList<>(Arrays.asList(1, 2, 4, 6)), new ArrayList<>(Arrays.asList(2, 1))));
+        System.out.println(tester.linearIn(new ArrayList<>(Arrays.asList(1, 2, 4, 6)), null));
+        System.out.println(tester.linearIn(new ArrayList<>(), new ArrayList<>(Arrays.asList(2, 4))));
+        System.out.println(tester.linearIn(new ArrayList<>(Arrays.asList(1, 2, 4)), new ArrayList<>(Arrays.asList(2, 4, 5, 6))));
+        System.out.println(tester.linearIn(new ArrayList<>(Arrays.asList(1, 2, 5, 6, 7, 9)), new ArrayList<>(Arrays.asList(2, 9))));
+
+        // Exercise 7
+        System.out.println("\nExercise 7");
+        System.out.println(tester.squareUp(3));
+        System.out.println(tester.squareUp(2));
+        System.out.println(tester.squareUp(4));
+        System.out.println(tester.squareUp(0));
+        System.out.println(tester.squareUp(-1));
+
+        // Exercise 8
+        System.out.println("\nExercise 8");
+        System.out.println(tester.seriesUp(3));
+        System.out.println(tester.seriesUp(4));
+        System.out.println(tester.seriesUp(2));
+        System.out.println(tester.seriesUp(0));
+        System.out.println(tester.seriesUp(-1));
     }
 
     public ArrayList<String> fizzBuzz(int start, int end) {
@@ -159,22 +187,71 @@ public class ProblemSet11 {
     }
 
     public boolean linearIn(ArrayList<Integer> outer, ArrayList<Integer> inner) {
-        return false;
+        if (outer == null || inner == null || outer.size() == 0 || inner.size() == 0) return false;
+        for (int i = 0; i < outer.size() - 1; i++) if (outer.get(i + 1) < outer.get(i)) return false;
+        for (int i = 0; i < inner.size() - 1; i++) if (inner.get(i + 1) < inner.get(i)) return false;
+        for (int i = 0; i < inner.size(); i++) {
+            boolean appears = false;
+            for (int j = 0; j < outer.size(); j++) if (outer.get(j).equals(inner.get(i))) appears = true;
+            if (!appears) return false;
+        }
+        return true;
     }
 
     public ArrayList<Integer> squareUp(int n) {
-        return null;
+        if (n < 0) return null;
+        ArrayList<Integer> values = new ArrayList<>();
+        for (int i = n; i > 0; i--) {
+            for (int j = 0; j < n; j++) {
+                int x = (j >= i - 1) ? n - j : 0;
+                values.add(x);
+            }
+        }
+        return values;
     }
 
     public ArrayList<Integer> seriesUp(int n) {
-        return null;
+        if (n < 0) return null;
+        ArrayList<Integer> values = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                values.add(j);
+            }
+        }
+        return values;
     }
 
     public int maxMirror(ArrayList<Integer> numbers) {
-        return -1;
+        if (numbers == null) return -1;
+        int largest = 0;
+        for (int i = 0; i < numbers.size(); i++) {
+            for (int j = numbers.size() - 1; j >= 0; j--) {
+                int size = 0;
+                int x = i;
+                int y = j;
+                while (x < numbers.size() && y >= 0 && numbers.get(x) == numbers.get(y)) {
+                    size++;
+                    x++;
+                    y--;
+                }
+                largest = Math.max(largest, size);
+            }
+        }
+        return largest;
     }
 
     public int countClumps(ArrayList<Integer> numbers) {
-        return -1;
+        if (numbers == null) return -1;
+        int clumps = 0;
+        int consecutive = 0;
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            if (numbers.get(i + 1).equals(numbers.get(i))) consecutive++;
+            else if (consecutive > 0) {
+                consecutive = 0;
+                clumps++;
+            }
+        }
+        if (consecutive > 0) clumps++;
+        return clumps;
     }
 }
